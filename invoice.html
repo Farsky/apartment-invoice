@@ -1,0 +1,104 @@
+<div class="sheet">
+  <table class="fixed">
+    <colgroup>
+      <col style="width: 3cm;" />
+      <col style="width: 3cm;" />
+      <col style="width: 3cm;" />
+      <col style="width: 3cm;" />
+      <col style="width: 3cm;" />
+      <col style="width: 4cm;" />
+    </colgroup>
+
+    <tbody>
+      <tr>
+        <th colspan="6" class="title center">PHIẾU TÍNH TIỀN PHÒNG - @apartment</th>
+      </tr>
+      <tr>
+        <th>Số Phòng</th>
+        <td colspan="4" class="center">@roomName</td>
+        <th class="right">Thành Tiền</th>
+      </tr>
+      <tr>
+        <th>Tiền Phòng</th>
+        <td colspan="4"></td>
+        <td class="right">@roomUnitPrice VNĐ</td>
+      </tr>
+      <tr>
+        <th rowspan="2">Tiền Điện</th>
+        <th>Số Cũ</th>
+        <th>Số Mới</th>
+        <th>Số kW</th>
+        <th>Đơn Giá</th>
+        <td rowspan="2" class="right">@electricFee VNĐ</td>
+      </tr>
+      <tr>
+        <td>@oldElectricIndex</td>
+        <td>@newElectricIndex</td>
+        <td>@electricNumber kW</td>
+        <td class="right">@electricUnitPrice</td>
+      </tr>
+      <tr>
+        <th rowspan="2">Tiền Nước (m<sup>3</sup>)</th>
+        <th>Số Cũ</th>
+        <th>Số Mới</th>
+        <th>Số m<sup>3</sup></th>
+        <th>Đơn Giá</th>
+        <td rowspan="2" class="right">@waterFeeByCube VNĐ</td>
+      </tr>
+      <tr>
+        <td>@oldWaterIndex</td>
+        <td>@newWaterIndex</td>
+        <td>@waterNumber m<sup>3</sup></td>
+        <td class="right">@waterUnitPricePerCube</td>
+      </tr>
+      <tr>
+        <th>Tiền Nước (n)</th>
+        <td colspan="2"></td>
+        <td>@renterCount Người</td>
+        <td class="right">@waterUnitPricePerCapita</td>
+        <td class="right">@waterFeeByCapita VNĐ</td>
+      </tr>
+      <tr>
+        <th>Tiền Xe Máy</th>
+        <td colspan="2"></td>
+        <td>@motorbikeCount Xe</td>
+        <td class="right">@motorbikeUnitPrice</td>
+        <td class="right">@motorbikeFee VNĐ</td>
+      </tr>
+      <tr>
+        <th>Tiền Xe Đạp</th>
+        <td colspan="2"></td>
+        <td>@bicycleCount Xe</td>
+        <td class="right">@bicycleUnitPrice</td>
+        <td class="right">@bicycleFee VNĐ</td>
+      </tr>
+      <tr>
+        <th>Tiền Rác</th>
+        <td colspan="4"></td>
+        <td class="right">@cleaningFee VNĐ</td>
+      </tr>
+      <tr>
+        <th>Nợ Cũ</th>
+        <td colspan="4"></td>
+        <td class="right">@debt VNĐ</td>
+      </tr>
+      <tr>
+        <th colspan="5" class="right">Tổng Cộng</th>
+        <td class="right">@total VNĐ</td>
+      </tr>
+      <tr>
+        <th colspan="5" class="right">@printDate</th>
+      </tr>
+      <tr>
+        <th colspan="6" class="note">
+          Lưu ý:<br />
+          <div class="expandingArea active">
+            <pre><span></span><br></pre>
+            <textarea
+              class="note-content">- Nếu đóng tiền phòng trễ quá 3 ngày thì chủ nhà sẽ cắt hợp đồng và không trả lại tiền cọc.</textarea>
+          </div>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+</div>

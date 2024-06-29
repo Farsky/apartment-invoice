@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="vi-VN">
+
+<head>
+  <title>In phiếu nhà trọ</title>
+
+  <meta charset='utf-8' />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+  <meta name="author" content="Farsky" />
+  <meta name="zalo" content="https://zalo.me/0987473597" />
+
+  <link rel="icon" type="image/x-icon" href="logo.png" />
+  <script src="tailwindcss.min.js"></script>
+  <link rel="stylesheet" href="inter.css" />
+</head>
+
+<body>
+  <div class="flex flex-row gap-5 m-5 text-center">
+    <div class="basis-1/3 flex flex-col gap-5">
+      <div class="flex flex-row gap-5">
+        <div class="bg-slate-300 flex flex-auto flex-col rounded-xl">
+          <label class="bg-slate-700 content-center font-semibold h-8 rounded-t-xl text-white">
+            Chọn file Excel
+          </label>
+          <input class="text-center mx-5 my-2" id="js-invoice-select-input" type="file" placeholder="Chọn file Excel"
+            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" />
+        </div>
+
+        <div class="basis-1/2 bg-slate-300 flex flex-col rounded-xl">
+          <label class="bg-slate-700 content-center font-semibold h-8 mb-2 rounded-t-xl text-white w-full">
+            Sao lưu dữ liệu
+          </label>
+          <div class="flex flex-row gap-5 h-10 pb-2 justify-center">
+            <button
+              class="border-2 border-slate-700 border-solid disabled:border-slate-400 disabled:pointer-events-none disabled:text-slate-400 hover:bg-slate-700 hover:text-white pb-1 rounded-xl w-28"
+              id="js-backup-button" type="button">
+              Sao lưu
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-slate-300 flex flex-col rounded-xl">
+        <label class="bg-slate-700 content-center font-semibold h-8 mb-2 rounded-t-xl text-white">
+          Thêm nhà trọ
+        </label>
+        <div class="flex flex-row gap-5 px-5 pb-2">
+          <input class="bg-slate-300 flex-1 placeholder-slate-700" id="js-create-apartment-input" type="text"
+            placeholder="Nhập tên nhà trọ" />
+          <button
+            class="border-2 border-slate-700 border-solid disabled:border-slate-400 disabled:pointer-events-none disabled:text-slate-400 hover:bg-slate-700 hover:text-white pb-1 rounded-xl w-28"
+            id="js-create-apartment-button" type="button">
+            Thêm
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-slate-300 flex flex-col rounded-xl">
+        <label class="bg-slate-700 content-center font-semibold h-8 mb-2 rounded-t-xl text-white">
+          Nhập code
+        </label>
+        <div class="flex flex-row gap-5 px-5 pb-2">
+          <input class="bg-slate-300 flex-1 placeholder-slate-700" id="js-enter-code-input" type="text"
+            placeholder="Nhập code" />
+          <button
+            class="border-2 border-slate-700 border-solid disabled:border-slate-400 disabled:pointer-events-none disabled:text-slate-400 hover:bg-slate-700 hover:text-white pb-1 rounded-xl w-28"
+            id="js-code-button" type="button">
+            Nhập
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="basis-1/3 bg-slate-300 flex flex-col rounded-xl">
+      <label class="bg-slate-700 content-center font-semibold h-8 rounded-t-xl text-white">
+        Danh sách nhà trọ (Tổng: <span id="js-apartment-total">0</span> | Tối đa: <span id="js-capacity">0</span>)
+      </label>
+      <ul id="js-apartment-list"></ul>
+    </div>
+
+    <a id="js-contact-card" class="basis-1/3 flex flex-col" href="https://zalo.me/0932776439">
+      <label class="bg-slate-700 content-center font-semibold h-9 rounded-t-xl text-white">
+        Liên hệ hỗ trợ (Zalo)
+      </label>
+      <object class="h-full rounded-b-xl w-full -z-10" data="https://qr.zalo.me/sl/2/34a7a8a282e86bb632f9"
+        type="image/png">
+        <img src="contact-ba.png" alt="Liên hệ hỗ trợ (Zalo)">
+      </object>
+    </a>
+  </div>
+
+  <hr class="border-2" />
+
+  <table class="mx-auto w-5/6">
+    <caption id="js-apartment-name" class="font-semibold text-2xl">Chưa tạo nhà trọ</caption>
+    <thead class="bg-slate-700 text-center text-white">
+      <tr>
+        <th class="border-2 border-solid border-white" rowspan="2">
+          <button
+            class="bg-slate-300 disabled:hover:bg-slate-300 disabled:text-slate-400 hover:bg-slate-400 hover:text-white px-2 rounded-xl text-black"
+            id="js-print-invoice-button" type="button">In
+            phiếu</button>
+        </th>
+        <th class="border-2 border-solid border-white" rowspan="2">Số phòng</th>
+        <th class="border-2 border-solid border-white" rowspan="2">Tổng cộng</th>
+        <th class="border-2 border-solid border-white" rowspan="2">Nợ cũ</th>
+        <th class="border-2 border-solid border-white" rowspan="2">Tiền phòng</th>
+        <th class="border-2 border-solid border-white" colspan="5">Điện</th>
+        <th class="border-2 border-solid border-white" colspan="5">Nước (m<sup>3</sup>)</th>
+        <th class="border-2 border-solid border-white" colspan="3">Nước (người)</th>
+        <th class="border-2 border-solid border-white" colspan="3">Xe máy</th>
+        <th class="border-2 border-solid border-white" colspan="3">Xe đạp</th>
+        <th class="border-2 border-solid border-white" rowspan="2">Tiền rác</th>
+      </tr>
+      <tr>
+        <th class="border-2 border-solid border-white">Số cũ</th>
+        <th class="border-2 border-solid border-white">Số mới</th>
+        <th class="border-2 border-solid border-white">Số kW</th>
+        <th class="border-2 border-solid border-white">Đơn giá</th>
+        <th class="border-2 border-solid border-white">Tổng</th>
+        <th class="border-2 border-solid border-white">Số cũ</th>
+        <th class="border-2 border-solid border-white">Số mới</th>
+        <th class="border-2 border-solid border-white">Số m<sup>3</sup></th>
+        <th class="border-2 border-solid border-white">Đơn giá</th>
+        <th class="border-2 border-solid border-white">Tổng</th>
+        <th class="border-2 border-solid border-white">Số người</th>
+        <th class="border-2 border-solid border-white">Đơn giá</th>
+        <th class="border-2 border-solid border-white">Tổng</th>
+        <th class="border-2 border-solid border-white">Số xe</th>
+        <th class="border-2 border-solid border-white">Đơn giá</th>
+        <th class="border-2 border-solid border-white">Tổng</th>
+        <th class="border-2 border-solid border-white">Số xe</th>
+        <th class="border-2 border-solid border-white">Đơn giá</th>
+        <th class="border-2 border-solid border-white">Tổng</th>
+      </tr>
+    </thead>
+    <tbody class="bg-slate-300 text-right" id="js-invoice-table"></tbody>
+  </table>
+
+  <script src="exceljs.min.js"></script>
+  <script src="app.js" charset="utf-8"></script>
+</body>
+
+</html>

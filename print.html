@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <title>Trang in</title>
+  <style type="text/css">
+    @media all {
+      .page-break {
+        display: none;
+      }
+    }
+
+    @media print {
+      .page-break {
+        display: block;
+        page-break-before: always;
+      }
+    }
+
+    body {
+      font-size: 4mm;
+      font-family: 'Arial';
+      width: 21cm;
+      text-align: left;
+      font-weight: bold;
+    }
+
+    table,
+    table th,
+    table td {
+      border: 1mm solid black;
+      border-collapse: collapse;
+      padding: 1mm;
+      margin: auto;
+      border-collapse: collapse;
+    }
+
+    table.fixed {
+      table-layout: fixed;
+    }
+
+    table.fixed th,
+    table.fixed td {
+      overflow: hidden;
+    }
+
+    .clear-both {
+      clear: both;
+    }
+
+    .sheet {
+      vertical-align: middle;
+      margin: auto;
+      padding-top: 1cm;
+    }
+
+    .title {
+      font-size: 5mm;
+    }
+
+    .signature {
+      width: 19cm;
+      margin: auto;
+    }
+
+    .note {
+      font-size: 3.5mm;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .right {
+      text-align: right;
+    }
+
+    /* ----- Auto-expand textarea Css ----- */
+    textarea,
+    pre {
+      margin: 0;
+      padding: 0;
+      outline: 0;
+      border: 0;
+    }
+
+    .expandingArea {
+      position: relative;
+      background: #fff;
+    }
+
+    .expandingArea>textarea,
+    .expandingArea>pre {
+      background: transparent;
+      font: inherit;
+      /* Make the text soft-wrap */
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .expandingArea>textarea {
+      /* The border-box box model is used to allow
+       * padding whilst still keeping the overall width
+       * at exactly that of the containing element.
+       */
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      box-sizing: border-box;
+      width: 100%;
+      /* This height is used when JS is disabled */
+      height: 20mm;
+    }
+
+    .expandingArea.active>textarea {
+      /* Hide any scrollbars */
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      /* Remove WebKit user-resize widget */
+      resize: none;
+    }
+
+    .expandingArea>pre {
+      display: none;
+    }
+
+    .expandingArea.active>pre {
+      display: block;
+      /* Hide the text; just using it for sizing */
+      visibility: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <main></main>
+
+  <script>
+    function makeExpandingArea(container) {
+      var area = container.querySelector('textarea');
+      var span = container.querySelector('span');
+      area.addEventListener('input', function () {
+        span.textContent = area.value;
+      }, false);
+      span.textContent = area.value;
+
+      // Enable extra CSS
+      container.className += "active";
+    }
+    var areas = document.querySelectorAll('.expandingArea');
+    var l = areas.length; while (l--) {
+      makeExpandingArea(areas[l]);
+    }
+  </script>
+</body>
+
+</html>
